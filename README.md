@@ -1,8 +1,9 @@
 ## Clone
 ```git clone https://github.com/nama_pengguna/nama_repositori.git```
-## Free hosting
-https://bot-hosting.net/?aff=1151414848782078053
+
 ## Setup config.json
+[Free hosting](https://bot-hosting.net/?aff=1151414848782078053)
+
 Fill in the config.json
 1. "token" - your discord bot token
 2. "mongoURI" - your mongodb URL
