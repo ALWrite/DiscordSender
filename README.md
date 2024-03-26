@@ -19,14 +19,14 @@ Fill in the config.json
 8. "yourBotId" - your discord bot ID
 9. "desiredChannelId" - your donation logs channel ID (you can check in #donation-logs)
 10. "specificUserId" - your donation log webhook ID
-11. "imageURL" - your image URL like this https://cdn.discordapp.com/attachments/1143429747565662208/1153279328583426120/standard_4.gif (you can get it from https://auto.creavite.co/animated-banners)
+11. "imageURL" - your image URL like this ```https://cdn.discordapp.com/attachments/1143429747565662208/1153279328583426120/standard_4.gif``` [you can get it here](https://auto.creavite.co/animated-banners)
 12. "wlEmoji" - your World Lock emoji (you must add emoji in your discord server)
 13. "emoji1" - it's like the arrow emoji you can check in #stock
 14. "emoji2" - it's like the growtopian emoji use .info
 15. "emoji3" it's like earth emoji use .info
 
 
-You can get free animated banner here https://auto.creavite.co/animated-banners
+You can get free animated banner [here](https://auto.creavite.co/animated-banners)
 ```
 {
 "StoreName": "",
