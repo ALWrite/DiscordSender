@@ -4,7 +4,7 @@
 2. Edit the `config.json` file
 
 this script can running in termux,RDP/VPS or pterodactyl
-[Free hosting pterodatyl](https://bot-hosting.net/?aff=1151414848782078053)
+[Free hosting pterodatyl](https://bot-hosting.net/?aff=1151414848782078053)<br>Error? [join our discord server](https://discord.com/invite/5TXNev5j4g)
 ## Setup config.json
 
 
