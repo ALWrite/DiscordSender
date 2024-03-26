@@ -1,8 +1,12 @@
-## Clone
-```git clone https://github.com/nama_pengguna/nama_repositori.git```
+## ✍️ Usage
+1. node `index.js`
 
+2. Edit the `config.json` file
+
+this script can running in termux,RDP/VPS or pterodactyl
+[Free hosting pterodatyl](https://bot-hosting.net/?aff=1151414848782078053)
 ## Setup config.json
-[Free hosting](https://bot-hosting.net/?aff=1151414848782078053)
+
 
 Fill in the config.json
 1. "token" - your discord bot token
@@ -40,4 +44,5 @@ You can get free animated banner here https://auto.creavite.co/animated-banners
   "emoji1": "<a:bluepurplearrow:1167683139586498700>",
   "emoji2": "<:growtopian:1167682930085208180>",
   "emoji3": "<a:emoji_4:1167682873944461414>"
-}```
+}
+```
