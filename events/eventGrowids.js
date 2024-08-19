@@ -1,34 +1,56 @@
-const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, Collection } = require('discord.js');
 const User = require('../models/user');
 
 module.exports = {
   name: Events.InteractionCreate,
-  async execute(interaction) {
-    if (interaction.customId === 'growid') {
-      const username = interaction.user.username;
-      const discordId = interaction.user.id;
+  async execute(interaction, client) {
+    // Cooldown management
+    const { cooldowns } = client;
+    const cooldownDuration = 30; // Cooldown duration in seconds
+    const cooldownAmount = cooldownDuration * 1000; // Convert to milliseconds
+    const now = Date.now();
+
+    if (!cooldowns.has('growid')) {
+      cooldowns.set('growid', new Collection());
+    }
+
+    const timestamps = cooldowns.get('growid');
+
+    if (interaction.isButton() && interaction.customId === 'growid') {
+      if (timestamps.has(interaction.user.id)) {
+        const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+        if (now < expirationTime) {
+          const expiredTimestamp = Math.round(expirationTime / 1000);
+          return interaction.reply({
+            content: `Please wait, you are on a cooldown for this button. You can use it again <t:${expiredTimestamp}:R>.`,
+            ephemeral: true
+          });
+        }
+      }
+
+      timestamps.set(interaction.user.id, now);
+      setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
       // Membuat modal untuk memasukkan GrowID
-        try{
-      const modal = new ModalBuilder()
-        .setCustomId('Modal')
-        .setTitle('Set Grow ID');
+      try {
+        const modal = new ModalBuilder()
+          .setCustomId('Modal')
+          .setTitle('Set Grow ID');
 
-      const growIdInput = new TextInputBuilder()
-        .setCustomId('growIdInput')
-        .setLabel("What's your Grow ID?")
-        .setStyle(TextInputStyle.Short)
-        .setPlaceholder('Enter your Grow ID')
-        .setRequired(true);
-const firstActionRow = new ActionRowBuilder().addComponents(growIdInput);
-	
-      modal.addComponents(firstActionRow);
+        const growIdInput = new TextInputBuilder()
+          .setCustomId('growIdInput')
+          .setLabel("What's your Grow ID?")
+          .setStyle(TextInputStyle.Short)
+          .setPlaceholder('Enter your Grow ID')
+          .setRequired(true);
 
-		// Show the modal to the user
-		await interaction.showModal(modal);
+        const firstActionRow = new ActionRowBuilder().addComponents(growIdInput);
+        modal.addComponents(firstActionRow);
 
+        // Show the modal to the user
+        await interaction.showModal(modal);
 
-      }catch (error) {
+      } catch (error) {
         console.error('Error showing modal:', error);
         return interaction.reply({ content: 'Something went wrong.', ephemeral: true });
       }
@@ -37,11 +59,11 @@ const firstActionRow = new ActionRowBuilder().addComponents(growIdInput);
     if (!interaction.isModalSubmit()) return;
 
     if (interaction.customId === 'Modal') {
-      const growID = interaction.fields.getTextInputValue('growIdInput')
-      console.log(growID)
+      const growID = interaction.fields.getTextInputValue('growIdInput');
+      console.log(growID);
 
       try {
-      const existingUser = await User.findOne({ growId: growID });
+        const existingUser = await User.findOne({ growId: growID });
         if (existingUser) {
           return interaction.reply({ content: `GrowID ${growID} has already been taken.`, ephemeral: true });
         }
@@ -69,5 +91,3 @@ const firstActionRow = new ActionRowBuilder().addComponents(growIdInput);
     }
   }
 };
-
-        
