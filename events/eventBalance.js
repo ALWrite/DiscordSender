@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
+const { Events, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, Collection } = require('discord.js');
 const { emoji1, emoji2 } = require('../config.json');
 const User = require('../models/user');
 
