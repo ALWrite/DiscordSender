@@ -1,4 +1,4 @@
-const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { Events, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, Collection } = require('discord.js');
 const { imageURL, wlEmoji, emoji1, emoji2, emoji3, roleToadd, buylogChannelId } = require('../config.json');
 const Product = require('../models/product');
 const User = require('../models/user');
