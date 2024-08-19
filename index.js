@@ -41,6 +41,8 @@ const client = new Client({
   ],
 });
 
+client.cooldowns = new Collection(); //add cooldown
+
 // Load event files from the events folder
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
